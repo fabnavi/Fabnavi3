@@ -19,6 +19,7 @@ gem "ransack"
 gem "carrierwave"
 gem "devise"
 gem "fog"
+gem "rails_config"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -41,6 +42,7 @@ group :development, :test do
   gem "factory_girl_rails"
 
   gem "pry-rails"
+  gem "pry-byebug"
   gem "hirb"
   gem "hirb-unicode"
   gem "spring"
@@ -54,5 +56,10 @@ group :test do
   gem "database_cleaner"
   gem "launchy"
   gem "selenium-webdriver"
+end
+
+
+group :production do
+  gem "pg"
 end
 
