@@ -1,0 +1,20 @@
+-# path = project.user.name + '/' + project.project_name
+- path = "path"
+- id = project.thumbnail_picture_id
+- url =  ""
+- if id
+  - thumbnail_picture = project.picture.select{|p|p.order_in_project == id+1}[0] 
+  - url = thumbnail_picture.try(:thumbnail_url)
+  -  url = thumbnail_picture.try(:url) if !!url
+- url = "images/noimage.gif"  unless !!url
+li id="#{{path}}" class="project"
+  img.thumbnail src="#{{url}}"
+  - if false #project.user.name != current_user
+    input type="button" id="onlyPlayBtn" class="makeButton selectedOp" value="Play" 
+  - else 
+    input type="button" class="makeButton selectedOp" value="Play" 
+    input type="button" class="editButton" value="Edit"
+    input type="button" class="addButton" value="Add"
+    input type="button" class="deleteButton" value="Delete"
+  .project-name #{"project.project_name"}
+  .project-author #{"project.author.name"}

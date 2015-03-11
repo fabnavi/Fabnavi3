@@ -1,0 +1,141 @@
+li img {
+  width: 280px;
+  height: 210px;
+  transform: rotateZ(180deg); }
+
+@font-face {
+  font-family: "Open Sans Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/OpenSans-Light-webfont.woff"); }
+button {
+  opacity: 0.4; }
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #b0b0b0; }
+
+#signin {
+  font-style: normal;
+  font-family: 'Open Sans Light',  sans-serif;
+  font-weight: normal;
+  font-size: 17pt;
+  height: 40px;
+  width: 225px;
+  margin-top: 100px;
+  margin-right: 50px;
+  float: right; }
+
+.hide {
+  display: none; }
+
+#header {
+  position: absolute;
+  left: 990px;
+  background-color: #F0F0F0;
+  top: 80px;
+  height: 80px;
+  min-width: 280px;
+  font-style: normal;
+  font-family: 'Open Sans Light',  sans-serif;
+  font-weight: normal;
+  font-size: 23pt;
+  float: left; }
+  #header img {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    height: 65px;
+    width: 65px; }
+  #header #author_name {
+    text-align: center;
+    padding-top: 30px;
+    padding-left: 75px;
+    padding-right: 5px; }
+  #header #author_email {
+    display: none; }
+  #header #signout {
+    height: 50px;
+    width: 100%;
+    position: relative;
+    transition: 0.3s ease-in-out;
+    z-index: -1;
+    top: -30px;
+    font-style: normal;
+    font-family: 'Open Sans Light',  sans-serif;
+    font-weight: normal;
+    font-size: 17pt; }
+  #header #signout.show {
+    top: 15px;
+    display: block; }
+
+#project-list {
+  top: 90px;
+  left: -40px;
+  position: relative;
+  margin-left: 40px;
+  margin-right: 40px; }
+  #project-list li {
+    border: 3px white solid;
+    width: 280px;
+    height: 210px;
+    background-color: white;
+    float: left;
+    list-style-type: none;
+    margin-right: 30px;
+    margin-bottom: 70px; }
+    #project-list li input {
+      display: none; }
+    #project-list li .project-name {
+      margin-top: -3px;
+      font-size: 18pt;
+      color: white; }
+    #project-list li .project-author {
+      margin-top: 0px;
+      font-size: 11pt;
+      color: white; }
+  #project-list .selectedItem {
+    border: 3px #dddd00 solid; }
+    #project-list .selectedItem input[type="button"] {
+      border: 0px;
+      display: inline;
+      position: absolute;
+      background-color: #b0b0b0;
+      color: white;
+      font-style: bold;
+      font-size: 11pt;
+      margin-left: -220px;
+      width: 160px;
+      height: 30px; }
+    #project-list .selectedItem input.selectedOp {
+      background-color: #dddd00; }
+    #project-list .selectedItem input:nth-of-type(4) {
+      margin-top: 155px; }
+    #project-list .selectedItem input:nth-of-type(3) {
+      margin-top: 115px; }
+    #project-list .selectedItem input:nth-of-type(2) {
+      margin-top: 75px; }
+    #project-list .selectedItem input:nth-of-type(1) {
+      margin-top: 35px; }
+    #project-list .selectedItem #onlyPlayBtn {
+      margin-top: 89px; }
+
+#title-logo {
+  margin-left: 40px;
+  margin-top: 80px; }
+
+#panel {
+  left: 50px; }
+
+.data {
+  user-select: none; }
+
+tbody {
+  user-select: none; }
+
+tr {
+  user-select: none; }
+
+td {
+  user-select: none; }

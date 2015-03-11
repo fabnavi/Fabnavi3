@@ -8,8 +8,6 @@ class CreateProjects < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :projects, [:project_name, :user_id, :status], unique: true
-    add_index :projects, :project_name, unique: true
-    add_index :projects, :user_id, unique: true
+    add_index :projects, [:project_name, :user_id], unique: true
   end
 end

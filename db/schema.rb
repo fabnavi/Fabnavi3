@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310075906) do
+ActiveRecord::Schema.define(version: 20150311070847) do
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "url"
+    t.string   "thumbnail_url"
+    t.integer  "project_id"
+    t.integer  "order_in_project"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "project_name"
@@ -22,9 +31,7 @@ ActiveRecord::Schema.define(version: 20150310075906) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "projects", ["project_name", "user_id", "status"], name: "index_projects_on_project_name_and_user_id_and_status", unique: true
-  add_index "projects", ["project_name"], name: "index_projects_on_project_name", unique: true
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id", unique: true
+  add_index "projects", ["project_name", "user_id"], name: "index_projects_on_project_name_and_user_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -39,6 +46,9 @@ ActiveRecord::Schema.define(version: 20150310075906) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

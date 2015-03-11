@@ -1,0 +1,9 @@
+javascript:
+  AUTHOR_EMAIL=#{{user.try(:email) || "null"}};
+  AUTHOR_NAME= #{{user.try(:name) || "null" }};
+input#signin type="button" value="Sign In"
+#header
+  #author_name
+  #author_email
+  img#avatar src="images/noAvatar.gif"
+  =link_to "Sign Out",destroy_user_session_path,  :id => "signout", :method => :delete
