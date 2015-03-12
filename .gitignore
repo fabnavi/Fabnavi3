@@ -18,3 +18,4 @@
 !/log/.keep
 /tmp
 /db/*.csv
+/**/*.swp
