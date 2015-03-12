@@ -20,6 +20,8 @@ gem "carrierwave"
 gem "devise"
 gem "fog"
 gem "rails_config"
+gem "omniauth"
+gem "omniauth-persona"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

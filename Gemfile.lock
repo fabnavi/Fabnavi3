@@ -104,6 +104,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -208,6 +210,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hashie (3.4.0)
     hike (1.2.3)
     hirb (0.7.3)
     hirb-unicode (0.0.5)
@@ -246,6 +249,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.11.0)
+    multipart-post (2.0.0)
     nenv (0.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -255,6 +259,13 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-persona (0.0.1)
+      faraday
+      multi_json
+      omniauth (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.18.1)
     polyamorous (1.1.0)
@@ -434,6 +445,8 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  omniauth
+  omniauth-persona
   pg
   pry-byebug
   pry-rails
