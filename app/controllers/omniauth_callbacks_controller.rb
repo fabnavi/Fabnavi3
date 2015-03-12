@@ -1,24 +1,32 @@
 class OmniauthCallbacksController < ApplicationController
 
   def persona
-
-    #render :text => request.env['omniauth.auth'].to_hash.status
+    # should return user
     req = request.env['omniauth.auth']['extra']['raw_info']
     if req["status"] == "okay" then
-      user = User.from_omniauth(request.env['omniauth.auth'])
-      puts user
-      redirect_to new_user_registration_path
-=begin
-      if user.persisted?
-        flash.notice = "Logged in"
-        sign_in_and_redirect user
-      else 
-        session["devise.user_attributes"] = user.attributes
-        redirect_to new_user_registeration_url
+      auth = Auth.find_for_omniauth(request.env['omniauth.auth'])
+
+      if auth.user then
+        #logged in 
+      else
+        #user not found , Register
+        user = User.new(
+          email:req["email"], 
+          password: Devise.friendly_token[4, 30]
+        )
+
+        if user.save! then
+          #user saved!
+          auth.user = user
+          auth.save
+        else
+          #user cannot saved
+          raise "User cannot saved"
+        end
       end
-
-=end
+      sign_in auth.user
+      render :text  => "Login Success"
     end
-  end
 
+  end
 end

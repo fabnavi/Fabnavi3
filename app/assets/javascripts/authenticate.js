@@ -19,7 +19,7 @@ navigator.id.watch({
           data:{assertion:assertion},
           success: function(res, status, xhr){
            console.log(res);
-           cosole.log(status);
+           console.log(status);
           },
           error: function(res, status, xhr){console.log(res,status,xhr);}
       });
@@ -29,7 +29,6 @@ navigator.id.watch({
       $.ajax({
           type:"DELETE",
           url:"/users/sign_out",
-          data:{assertion:assertion},
           success: function(res, status, xhr){console.log(res,status,xhr);},
           error: function(res, status, xhr){console.log(res,status,xhr);}
       });
