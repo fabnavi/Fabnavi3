@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150312093113) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "auths", ["uid", "provider"], name: "index_auths_on_uid_and_provider", unique: true
+
   create_table "pictures", force: :cascade do |t|
     t.string   "url"
     t.string   "thumbnail_url"

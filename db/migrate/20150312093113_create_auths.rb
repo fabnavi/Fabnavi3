@@ -7,6 +7,6 @@ class CreateAuths < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-  end
   add_index :auths, [:uid, :provider], unique:  true
+  end
 end
