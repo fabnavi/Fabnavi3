@@ -5,10 +5,18 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:persona]
   has_many :auths, dependent: :destroy
 
+  def update_with_password(params, *options)
+   p
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
+  end
 
   def password_required?
     #TODO check whether this is secure?
-    bybug.pry
-    super && auths.length > 0
+    #bybug.pry
+    super && auths.length == 0
   end
 end

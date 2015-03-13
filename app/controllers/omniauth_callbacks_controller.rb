@@ -9,16 +9,17 @@ class OmniauthCallbacksController < ApplicationController
       if auth.user then
         #logged in 
       else
+        auth.save
         #user not found , Register
         user = User.new(
-          email:req["email"], 
-          password: Devise.friendly_token[4, 30]
+          email:req["email"]
         )
+
+        user.auths.push auth
 
         if user.save! then
           #user saved!
           auth.user = user
-          auth.save
         else
           #user cannot saved
           raise "User cannot saved"

@@ -1,8 +1,11 @@
 class HomeController < ApplicationController
- 
+
   def index 
-    @user = current_user
-    render "index"
+    if user_signed_in? and  current_user.name.blank?
+      redirect_to edit_user_registration_path
+    else 
+      render "index"
+    end
   end
 
 

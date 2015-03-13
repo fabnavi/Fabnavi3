@@ -2,14 +2,15 @@ h1 Fabnavi Login
 script src="https://login.persona.org/include.js"
 -if user_signed_in?
   javascript:
-    CURRENT_USER =  "#{current_user.email}";
+    CURRENT_USER_EMAIL =  "#{current_user.email}";
+  div you are #{current_user.name} 
 -else
   javascript:
-    CURRENT_USER = null;
+    CURRENT_USER_EMAIL = null;
 =javascript_include_tag "authenticate"
 .account
   -if user_signed_in?
-    button#signOut Sing Out
+    button#signOut Sign Out
   -else
     button#signIn Sign In
   

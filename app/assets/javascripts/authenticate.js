@@ -14,7 +14,7 @@ function init(){
 }
 function registerPersonaCallbacks (){
   navigator.id.watch({
-    loggedInEmail:CURRENT_USER,
+    loggedInEmail:CURRENT_USER_EMAIL,
   onlogin: function(assertion){
     $.ajax({
       type:"POST",
