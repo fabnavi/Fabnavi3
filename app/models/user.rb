@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
 
   def password_required?
+    #TODO check whether this is secure?
+    bybug.pry
     super && auths.length > 0
   end
 end
