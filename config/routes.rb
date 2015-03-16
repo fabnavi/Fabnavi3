@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   resources :project
+  resources :users, :only => [:show] 
+  resource :home, :only => [:show], :controller => :home
   root to: "sandbox#login"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
