@@ -1,0 +1,13 @@
+doctype html
+html 
+  head
+    meta charset="utf-8"
+    title data-l10n-id="title" FabNavi
+    =stylesheet_link_tag 'fabnavi'
+    script src="https://login.persona.org/include.js"
+    =javascript_include_tag ['lib/jquery', 'Keybind','ProjectList']
+    =csrf_meta_tag
+    meta content="width=device-width user-scalable=no" name="viewport"
+  body onload="ProjectList.init()"
+    ==yield
+

@@ -1,0 +1,4 @@
+-if signed_in?
+  =render partial: 'layouts/statusbar',:locals => {:user => @user }
+img#title-logo src="images/fabnaviLogo.gif"
+=render partial: 'layouts/projects_list', :locals => {:projects => @projects}

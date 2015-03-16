@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-
   def show
-    render :text => "hoge"
+    @projects = Project.all_projects
+    @user = current_user
+    render :layout => 'projects' 
   end
-
 end

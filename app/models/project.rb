@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   has_many :picture
   belongs_to :user
 
-  scope :project_list_default, -> {
+  scope :all_projects, -> {
     joins(:user).order('updated_at desc').where(Project.arel_table[:status].eq 1)
   }
 
