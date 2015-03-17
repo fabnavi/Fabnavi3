@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :project
   resource :home, :only => [:show], :controller => :home
   root to: "projects#index"
-  #root to: "sandbox#login"
+  get "/login_test" =>  "sandbox#login"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

@@ -3,7 +3,6 @@ var ProjectList =  function(){
 
   function init(){
     load();
-    authInit();
     KeyBind.init();
   }
 
@@ -170,86 +169,18 @@ var ProjectList =  function(){
       $.get("/project/delete?project_id="+data[1]+"&author="+data[0]);
     }
   }
-
-  function authInit(){
-    var signIn = document.getElementById('signin');
-    var signOut= document.getElementById('signout');
-    var author_name = document.getElementById('author_name');
-    var author_email = document.getElementById('author_email');
-    var avatar = document.getElementById('avatar');
-    var header = document.getElementById('header');
-    if(AUTHOR_EMAIL != null){
-      author_email.textContent = AUTHOR_EMAIL;
-      if(AUTHOR_NAME != null){
-        author_name.textContent = AUTHOR_NAME;
-        signIn.style.display = "none";
-        header.onclick = function(){
-          if(signOut.className == ""){
-            signOut.className = "show";
-          } else {
-            signOut.className = "";
-          }
-        };
-      }else {
-        header.className = "";
-      }
-
-    } else {
-      author_email.textContent = "Plese sign in with Persona";
-      signOut.style.display = "none";
-      author_name.className = "hide";
-      author_email.className = "hide";
-      avatar.className = "hide";
-      header.className = "hide";
-    }
-
-    if(signIn){
-      signIn.onclick = function(){navigator.id.request();};
-    }
-    if(signOut){
-      author_name.onclick = null;
-      signOut.onclick = function(){navigator.id.logout();};
-    }
-
-    navigator.id.watch({
-        loggedInEmail:AUTHOR_EMAIL,
-        onlogin: function(assertion){
-          $.ajax(
-            { type : 'POST',
-              url: '/users/sign_in',
-              data:{assertion:assertion},
-              success:function(res,status,xhr){
-                window.location = res;
-              },
-              error:function(res,status,xhr){
-                console.log(res);
-                alert("login failure" + res);
-              },
-          });
-        },
-
-        onlogout:function(){
-          $.ajax(
-            {type:'DELETE',
-              url:'/users/sign_out/',
-              success:function(res,status,xhr){window.location.reload();},
-              error:function(res,status,xhr){alert("logout failure" + res);},
-          });
-            }
-        });
-      }
-      return {
-        init:init,
-        prev:prev,
-        next:next,
-        fire:fire,
-        add:add,
-        play:play,
-        edit:edit,
-        up:up,
-        down:down,
-        del:del,
-        newProject:newProject,
-      }
-      }();
+  return {
+    init:init,
+    prev:prev,
+    next:next,
+    fire:fire,
+    add:add,
+    play:play,
+    edit:edit,
+    up:up,
+    down:down,
+    del:del,
+    newProject:newProject,
+  }
+  }();
 
