@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   }
 
   scope :authenticated_project_list, ->(userName) {
-    user_id = Author.find_by(:name =>userName).id
+    user_id = User.find_by(:name =>userName).id
     joins(:user).order('updated_at desc')
       .where(Project.arel_table[:status].eq(1)
       .or(Project.arel_table[:user_id].eq(user_id)))

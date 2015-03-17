@@ -5,9 +5,17 @@ html
     title data-l10n-id="title" FabNavi
     =stylesheet_link_tag 'fabnavi'
     script src="https://login.persona.org/include.js"
-    =javascript_include_tag ['lib/jquery', 'Keybind','ProjectList']
+    =javascript_include_tag 'lib/jquery', 'Keybind','ProjectList'
     =csrf_meta_tag
     meta content="width=device-width user-scalable=no" name="viewport"
+    javascript:
+      AUTHOR_EMAIL="#{{@user.try(:email) ||'' }}";
+      AUTHOR_NAME= "#{{@user.try(:name) ||'' }}";
   body onload="ProjectList.init()"
     ==yield
+    p.notice 
+      =notice
+    p.alert
+      =alert
+
 

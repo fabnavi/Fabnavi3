@@ -1,22 +1,7 @@
-=render 'layouts/header'
-=stylesheet_link_tag 'fabnavi'
-script src="https://login.persona.org/include.js"
-=javascript_include_tag 'lib/jquery', 'Keybind','ProjectList'
-
-meta content="width=device-width user-scalable=no" name="viewport"
-body onload="ProjectList.init()"
-  =render partial: 'layouts/statusbar',:locals => {:user => @user }
-  img#title-logo src="images/fabnaviLogo.gif"
-  #projectList
-    ul#project-list
-      - if session[:authorName]
-        li#__newProject__ onclick="window.location='/new';" 
-          img src="images/newProject.gif"
-          .project-name Create New Project
-          .project-author #{session[:authorName]}
-      - @projects.each do |p|
-        li #{p.to_json }
-        =render partial: 'thumbnail', :locals => {:project  => p}
-  #status
-  #notice
+h1 All Projects
+ul#project-list
+  li#__newProject__ onclick="window.location='/new';" 
+    img src="images/newProject.gif"
+    .project-name Create New Project
+    .project-author #{session[:authorName]}
 

@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.project_list_default
+    @projects = Project.all_projects
     @user = current_user
-    render :index
+    render :layout => "projects"
   end
 
   # GET /projects/1
