@@ -4,11 +4,11 @@ class Project < ActiveRecord::Base
   has_many :picture
   belongs_to :user
 
-  scope :all_projects, -> {
+  scope :public_projects, -> {
     joins(:user).order('updated_at desc').where(Project.arel_table[:status].eq 1)
   }
 
-  scope :authenticated_project_list, ->(userName) {
+  scope :owned_by, ->(userName) {
     user_id = User.find_by(:name =>userName).id
     joins(:user).order('updated_at desc')
       .where(Project.arel_table[:status].eq(1)

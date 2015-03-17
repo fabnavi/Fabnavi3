@@ -1,7 +1,3 @@
 h1 All Projects
-ul#project-list
-  li#__newProject__ onclick="window.location='/new';" 
-    img src="images/newProject.gif"
-    .project-name Create New Project
-    .project-author #{session[:authorName]}
+=render partial: 'layouts/projects_list', :locals => {:projects => @projects}
 

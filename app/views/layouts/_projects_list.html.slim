@@ -1,10 +1,7 @@
-/! projects, allow_create_project
+-# projects, allow_create_project
 #projectList
   ul#project-list
-    li#__newProject__ onclick="window.location='/new';" 
-      img src="images/newProject.gif"
-      .project-name Create New Project
-      .project-author #{session[:authorName]}
+    - if signed_in?
+      =render partial: 'layouts/new_project_thumbnail'
     - projects.each do |p|
-      li
-        =render partial: 'layouts/thumbnail', :locals => {:project  => p}
+      =render partial: 'layouts/thumbnail', :locals => {:project  => p}

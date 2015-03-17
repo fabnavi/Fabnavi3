@@ -4,8 +4,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all_projects
     @user = current_user
+    @projects = Project.public_projects
     render :layout => "projects"
   end
 

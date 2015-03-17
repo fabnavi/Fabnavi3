@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def show
     if signed_in?
-      @projects = Project.all_projects
       @user = current_user
+      @projects = Project.owned_by(@user)
       render :layout => 'projects' 
     else
       flash[:notice] = "Please Login"
