@@ -8,11 +8,14 @@ class Project < ActiveRecord::Base
     joins(:user).order('updated_at desc').where(Project.arel_table[:status].eq 1)
   }
 
-  scope :owned_by, ->(userName) {
-    user_id = User.find_by(:name =>userName).id
+  scope :owned_by, ->(user) {
+   joins(:user).order('updated_at desc').where(:user => user)
+  }
+
+  scope :public_projects_including_owned_by, ->(user) {
     joins(:user).order('updated_at desc')
       .where(Project.arel_table[:status].eq(1)
-      .or(Project.arel_table[:user_id].eq(user_id)))
+     .or(Project.arel_table[:user_id].eq(user.id)))
   }
 
   scope :find_project, -> (user,project_name){
