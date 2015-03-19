@@ -97,7 +97,6 @@ var ProjectList =  function(){
   }
 
   function selectOp(maybeIndex){
-    if(!AUTHOR_NAME)return false;
     if(maybeIndex < 0){
       selectedOpIndex = 0;
       return false;
@@ -130,6 +129,7 @@ var ProjectList =  function(){
     alert("Stub");
   }
   function add () {
+    alert("stub");
     if(document.getElementById(selectedId).getElementsByClassName('addButton').length == 0)return 0;
     selectOp(2);
     alert("Add photo");
@@ -140,8 +140,9 @@ var ProjectList =  function(){
   }
 
   function play () {
+    alert("stub");
     if(selectedId == "__newProject__"){
-      window.location = "/new";
+      window.location = "/projects/new";
       return 0;
     }
     if(document.getElementById(selectedId).getElementsByClassName('makeButton').length == 0)return 0;
@@ -150,6 +151,7 @@ var ProjectList =  function(){
   }
 
   function edit () {
+    alert("stub");
     if(document.getElementById(selectedId).getElementsByClassName('editButton').length == 0)return 0;
     selectOp(1);
     if(selectedId == "__newProject__"){
@@ -160,6 +162,7 @@ var ProjectList =  function(){
   }
 
   function del(){
+    alert("stub");
     var elem = document.getElementById(selectedId);
     if(!elem || elem.getElementsByClassName('deleteButton').length == 0)return 0;
     selectOp(3);

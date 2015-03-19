@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
-  resources :project
+
+  resources :projects
   resource :home, :only => [:show], :controller => :home
   root to: "projects#index"
   get "/login_test" =>  "sandbox#login"
