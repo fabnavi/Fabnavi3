@@ -1,5 +1,10 @@
 class Auth < ActiveRecord::Base
+  
+  validates :provider, presence: true
+  validates :uid, presence: true
   belongs_to :user
+
+
 
 
   def self.find_for_omniauth(auth)
@@ -15,8 +20,6 @@ class Auth < ActiveRecord::Base
     else
       raise "Provider #{auth["provider"]} is not recognized"
     end
-
-
   end
 
 end

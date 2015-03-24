@@ -1,4 +1,8 @@
 class Project < ActiveRecord::Base
+  validates :project_name , presence: true
+  validates :user , presence: true
+  validates :status , presence: true
+  validates :thumbnail_picture , presence: true
   validates_uniqueness_of :user, scope: :project_name
   validates :project_name, length:{maximum:30,minimum:4}
   has_many :picture
