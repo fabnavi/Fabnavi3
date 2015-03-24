@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user = current_user
+    @project.status = :private_project
 
     respond_to do |format|
       if @project.save
