@@ -13,9 +13,5 @@ html
       CURRENT_USER_EMAIL="#{{@user.try(:email) ||'' }}";
   body onload="Auth.init();ProjectList.init()"
     ==yield
-    p.notice 
-      =notice
-    p.alert
-      =alert
 
 

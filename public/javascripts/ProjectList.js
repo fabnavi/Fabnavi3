@@ -140,14 +140,13 @@ var ProjectList =  function(){
   }
 
   function play () {
-    alert("stub");
     if(selectedId == "__newProject__"){
       window.location = "/projects/new";
       return 0;
     }
     if(document.getElementById(selectedId).getElementsByClassName('makeButton').length == 0)return 0;
     selectOp(0);
-    window.location += "project/"+selectedId;
+    window.location += "/project/"+selectedId;
   }
 
   function edit () {
