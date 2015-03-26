@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter:authenticate_user!, only: [:show, :edit, :update, :destroy, :create]
+  before_filter :set_project, except: [:index]
   
   # GET /projects
   # GET /projects.json
@@ -12,6 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    redirect_to root_path, :status => :forbidden  unless visible?
   end
 
   # GET /projects/new
@@ -22,7 +24,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    set_project
   end
 
   # POST /projects
@@ -46,7 +47,6 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    set_project
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -75,6 +75,10 @@ class ProjectsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def visible?
+     @project.public_project? or (user_signed_in? and @project.user == current_user)
+    end
+
     def project_params
      params[:project].permit(:project_name)
     end
