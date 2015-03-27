@@ -1,8 +1,12 @@
 h1 Index Page
--if user_signed_in?
-  =link_to "home", home_path
-  =link_to "Sign Out",destroy_user_session_path,  :id => "signout", :method => :delete
--else 
-  =render partial: 'layouts/sign_in_btn'
+- content_for( :js_include ) do
+  script src="https://login.persona.org/include.js"
+  =javascript_include_tag "application","authenticate", "Keybind", "ProjectList"
+  javascript:
+    function boot(){
+      Auth.init();
+      ProjectList.init();
+    }
+-content_for( :css_link ) do
+  =stylesheet_link_tag 'fabnavi'
 =render partial: 'layouts/projects_list', :locals => {:projects => @projects}
-

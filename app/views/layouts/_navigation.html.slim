@@ -1,0 +1,9 @@
+p.notice 
+  =notice
+p.alert
+  =alert
+-if user_signed_in?
+  =link_to "home", home_path
+  =link_to "Sign Out",destroy_user_session_path,  :id => "signout", :method => :delete
+-else 
+  button#signIn Sign In

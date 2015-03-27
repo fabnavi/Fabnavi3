@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @projects = Project.public_projects
-    render :layout => "projects"
   end
 
   # GET /projects/1
@@ -19,7 +18,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    render :layout => false
   end
 
   # GET /projects/1/edit
