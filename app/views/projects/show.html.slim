@@ -1,6 +1,5 @@
-p#notice = notice
 h1 show
-
 =@project.to_json
+=render partial: "layouts/content", locals: { project: @project.to_json, pictures: @project.picture }
 '|
-= link_to 'Back', projects_path
+= link_to 'Index', root_path 
