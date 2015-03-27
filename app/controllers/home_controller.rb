@@ -3,7 +3,6 @@ class HomeController < ApplicationController
     if signed_in?
       @user = current_user
       @projects = Project.owned_by(@user)
-      render :layout => 'projects' 
     else
       flash[:notice] = "Please Login"
       redirect_to root_path

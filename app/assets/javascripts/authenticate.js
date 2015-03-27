@@ -15,9 +15,9 @@ var Auth = (function(){
   }
   function registerPersonaCallbacks (){
     navigator.id.watch({
-        loggedInEmail:CURRENT_USER_EMAIL,
+        loggedInEmail:CURRENT_USER.email,
         onlogin: function(assertion){
-          if(CURRENT_USER_EMAIL == null)return;
+          if(CURRENT_USER.email == null)return;
           $.ajax({
               type:"POST",
               url:"/users/auth/persona/callback",
@@ -36,7 +36,7 @@ var Auth = (function(){
               type:"DELETE",
               url:"/users/sign_out",
               success: function(res, status, xhr){
-                if(CURRENT_USER_EMAIL != null)
+                if(CURRENT_USER.email != null)
                   window.location.reload();
               },
               error: function(res, status, xhr){
