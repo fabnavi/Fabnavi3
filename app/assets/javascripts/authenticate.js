@@ -1,4 +1,5 @@
 var Auth = (function(){
+
     function init(){
       var signIn = document.getElementById('signIn') || false,
           signOut = document.getElementById('signOut') || false
@@ -13,11 +14,14 @@ var Auth = (function(){
       navigator.id.logout();
     }
   }
+
   function registerPersonaCallbacks (){
+   console.log("registered");
     navigator.id.watch({
         loggedInEmail:CURRENT_USER.email,
         onlogin: function(assertion){
-          if(CURRENT_USER.email == null)return;
+         console.log(CURRENT_USER);
+         //if(CURRENT_USER.email == null)throw Error("CURRENT_USER : null");
           $.ajax({
               type:"POST",
               url:"/users/auth/persona/callback",
@@ -46,6 +50,7 @@ var Auth = (function(){
         }
     });
   }
+
   return{
     init:init
   };

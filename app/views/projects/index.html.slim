@@ -4,7 +4,7 @@ img#title-logo src="images/fabnavilogo.gif"
   script src="https://login.persona.org/include.js"
   =javascript_include_tag "application","authenticate", "keybind", "projectlist"
   javascript:
-    CURRENT_USER = "#{current_user.to_json}";
+    CURRENT_USER = #{{current_user.to_json || null}};
     function boot(){
       Auth.init();
       ProjectList.init();
