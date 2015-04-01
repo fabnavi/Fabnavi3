@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter:authenticate_user!, only: [:show, :edit, :update, :destroy, :create]
   before_filter :set_project, except: [:index]
-  
+
   # GET /projects
   # GET /projects.json
   def index
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-       format.html { redirect_to :action => "edit", :id => @project.id }
+        format.html { redirect_to :action => "edit", :id => @project.id }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -67,17 +67,16 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def visible?
-     @project.public_project? or (user_signed_in? and @project.user == current_user)
-    end
 
-    def project_params
-     params[:project].permit(:project_name)
-    end
+  def visible?
+    @project.public_project? or (user_signed_in? and @project.user == current_user)
+  end
+
+  def project_params
+    params[:project].permit(:project_name)
+  end
 end

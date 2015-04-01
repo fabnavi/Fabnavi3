@@ -1,5 +1,6 @@
 h1 index page
 img#title-logo src="images/fabnavilogo.gif"
+
 - content_for( :js_include ) do
   script src="https://login.persona.org/include.js"
   =javascript_include_tag "application","authenticate", "keybind", "projectlist"
@@ -11,4 +12,5 @@ img#title-logo src="images/fabnavilogo.gif"
     }
 -content_for( :css_link ) do
   =stylesheet_link_tag 'fabnavi'
+
 =render partial: 'layouts/projects_list', :locals => {:projects => @projects}

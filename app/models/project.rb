@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
- enum status: [:private_project, :public_project, :group_project]
+  enum status: [:private_project, :public_project, :group_project]
   validates :project_name , presence: true
   validates :user , presence: true
   validates :status , presence: true
@@ -13,13 +13,13 @@ class Project < ActiveRecord::Base
   }
 
   scope :owned_by, ->(user) {
-   joins(:user).order('updated_at desc').where(:user_id => user.id)
+    joins(:user).order('updated_at desc').where(:user_id => user.id)
   }
 
   scope :public_projects_including_owned_by, ->(user) {
     joins(:user).order('updated_at desc')
       .where(Project.arel_table[:status].eq(1)
-     .or(Project.arel_table[:user_id].eq(user.id)))
+      .or(Project.arel_table[:user_id].eq(user.id)))
   }
 
   scope :find_project, -> (user,project_name){
@@ -31,4 +31,24 @@ class Project < ActiveRecord::Base
     joins(:user).find_by(:project_name => project_name,
                          :users => {:name => user})
   }
+
+  def thumbnail_url
+    url = nil
+    if self.thumbnail_picture_id
+      thumbnail_picture = self.picture.select{ |p| p.order_in_project == self.thumbnail_picture_id + 1 }[0] 
+      url = thumbnail_picture.try(:thumbnail_url)
+      url = thumbnail_picture.try(:url) if !!url
+    end
+
+    if url
+      return url
+    else
+      return "images/noimage.gif"
+    end
+  end
+
+  def path 
+    self.user.name.to_json + "/" + self.project_name.to_json
+  end
+
 end
