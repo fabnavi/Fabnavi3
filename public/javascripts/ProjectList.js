@@ -13,6 +13,7 @@ var ProjectList =  function(){
     for (var i = 0; i < makeButtons.length;i++){
       makeButtons[i].onclick = function(e){ 
         selectedId = e.target.parentElement.id;
+        console.log(selectedId);
         play();
       };
     }
@@ -136,17 +137,17 @@ var ProjectList =  function(){
     if(selectedId == "newProject"){
       return 0;
     }
-    window.location += "add/"+selectedId;
+    redirect("add",selectedId);
   }
 
   function play () {
     if(selectedId == "__newProject__"){
-      window.location = "/projects/new";
-      return 0;
+      redirect("new");
+    }else {
+      if(document.getElementById(selectedId).getElementsByClassName('makeButton').length == 0)return 0;
+      selectOp(0);
+      redirect("show",selectedId);
     }
-    if(document.getElementById(selectedId).getElementsByClassName('makeButton').length == 0)return 0;
-    selectOp(0);
-    window.location += "/project/"+selectedId;
   }
 
   function edit () {
@@ -154,10 +155,10 @@ var ProjectList =  function(){
     if(document.getElementById(selectedId).getElementsByClassName('editButton').length == 0)return 0;
     selectOp(1);
     if(selectedId == "__newProject__"){
-      window.location = "/new";
-      return 0;
+      redirect("new");
+    }else {
+      redirect("edit",selectedId);
     }
-    window.location += "edit/"+selectedId;
   }
 
   function del(){
@@ -168,7 +169,21 @@ var ProjectList =  function(){
     if(confirm("are you sure to delete project :" + selectedId)){
       elem.remove();
       var data = selectedId.split('/');
-      $.get("/project/delete?project_id="+data[1]+"&author="+data[0]);
+      $.get("/projects/delete?project_id="+data[1]+"&author="+data[0]);
+    }
+  }
+
+  function redirect(op, arg){
+    switch(op){
+      case "new":
+      break;
+      case "show":
+        window.location = "http://" + window.location.host + "/projects/" + arg;
+        break;
+
+
+      default:
+      throw Error("Undefined Operation");
     }
   }
   return {

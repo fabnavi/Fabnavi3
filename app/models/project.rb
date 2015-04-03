@@ -48,7 +48,7 @@ class Project < ActiveRecord::Base
   end
 
   def path 
-    self.user.name.to_json + "/" + self.project_name.to_json
+    self.user.name.to_s + "/" + self.project_name.to_s
   end
 
 end

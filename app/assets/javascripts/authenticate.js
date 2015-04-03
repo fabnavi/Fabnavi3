@@ -16,12 +16,14 @@ var Auth = (function(){
   }
 
   function registerPersonaCallbacks (){
+   if(CURRENT_USER == null){
+    CURRENT_USER = {email: ""};
+   }
    console.log("registered");
     navigator.id.watch({
         loggedInEmail:CURRENT_USER.email,
         onlogin: function(assertion){
          console.log(CURRENT_USER);
-         //if(CURRENT_USER.email == null)throw Error("CURRENT_USER : null");
           $.ajax({
               type:"POST",
               url:"/users/auth/persona/callback",
