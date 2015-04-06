@@ -51,4 +51,8 @@ class Project < ActiveRecord::Base
     self.user.name.to_s + "/" + self.project_name.to_s
   end
 
+  def project_index 
+    self.id.to_s
+  end
+
 end

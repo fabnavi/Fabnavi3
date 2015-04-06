@@ -68,20 +68,17 @@ class ProjectsController < ApplicationController
 
   private
   def set_project
-   
    if params.include? :id
     @project = Project.find(params[:id])
    elsif params.include? :user_name and params.include? :project_name
       @project = Project.find_project(params[:user_name], params[:project_name])
    end
-  
-   puts "set_project"
-   puts @project.to_json
-   puts params.to_json
    unless @project 
     redirect_to root_path, status: 404
    end
 
+  rescue
+    redirect_to root_path, status: 404
   end
 
   def visible?

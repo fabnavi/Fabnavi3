@@ -180,8 +180,6 @@ var ProjectList =  function(){
       case "show":
         window.location = "http://" + window.location.host + "/projects/" + arg;
         break;
-
-
       default:
       throw Error("Undefined Operation");
     }
