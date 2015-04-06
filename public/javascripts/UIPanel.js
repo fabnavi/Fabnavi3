@@ -3,22 +3,48 @@ function HideableDOM(id ){
   this.elem = document.getElementById(id);
   this.hide();
 }
+
+function dbg(target){
+  console.trace();
+  console.log("this.elem is null! :" + target.toSource()); 
+}
+
 HideableDOM.prototype = {
   hide:function(){
-    this.elem.classList.remove("show");
-    this.elem.classList.add("hide");
+    if(this.elem == null){
+     dbg(this);
+      return;
+    }
+      this.elem.classList.remove("show");
+      this.elem.classList.add("hide");
   },
   show:function(){
+    if(this.elem == null){
+     dbg(this);
+      return;
+    }
     this.elem.classList.remove("hide");
     this.elem.classList.add("show");
   },
   text :function(){
+    if(this.elem == null){
+     dbg(this);
+      return;
+    }
     return this.elem.textContent;
   },
   setText:function(str){
+    if(this.elem == null){
+     dbg(this);
+      return;
+    }
     this.elem.innerHTML= str;
   },
   onclick:function(cb){
+    if(this.elem == null){
+     dbg(this);
+      return;
+    }
     this.elem.onclick = cb;
   }
 };
