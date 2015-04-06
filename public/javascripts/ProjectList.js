@@ -126,9 +126,6 @@ var ProjectList =  function(){
     ProjectList[lst[selectedOpIndex]]();
   }
 
-  function newProject(){
-    alert("Stub");
-  }
   function add () {
     alert("stub");
     if(document.getElementById(selectedId).getElementsByClassName('addButton').length == 0)return 0;
@@ -151,7 +148,6 @@ var ProjectList =  function(){
   }
 
   function edit () {
-    alert("stub");
     if(document.getElementById(selectedId).getElementsByClassName('editButton').length == 0)return 0;
     selectOp(1);
     if(selectedId == "__newProject__"){
@@ -176,11 +172,16 @@ var ProjectList =  function(){
   function redirect(op, arg){
     switch(op){
       case "new":
+        window.location = "http://" + window.location.host + "/projects/new";
       break;
       case "show":
         window.location = "http://" + window.location.host + "/projects/" + arg;
         break;
+      case "edit":
+        window.location = "http://" + window.location.host + "/projects/" + arg + "/edit";
+        break;
       default:
+        console.log(op);
       throw Error("Undefined Operation");
     }
   }
@@ -195,7 +196,6 @@ var ProjectList =  function(){
     up:up,
     down:down,
     del:del,
-    newProject:newProject,
   }
   }();
 

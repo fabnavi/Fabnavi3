@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter:authenticate_user!, only: [:show, :edit, :update, :destroy, :create]
-  before_filter :set_project, except: [:index]
+  before_filter:authenticate_user!, only: [:show, :edit, :update, :destroy, :create, :new]
+  before_filter :set_project, except: [:index, :new]
 
   # GET /projects
   # GET /projects.json
@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    render :template  => "projects/show"
   end
 
   # POST /projects
