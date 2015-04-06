@@ -1,0 +1,9 @@
+#projectList
+  ul#project-list
+    - if signed_in?
+      li#__newProject__ 
+        img src="images/newProject.gif"
+        .project-name Create New Project
+        .project-author #{session[:authorName]}
+    - projects.each do |p|
+      =render partial: 'layouts/thumbnail', :locals => {:project  => p}
