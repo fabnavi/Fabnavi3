@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter:authenticate_user!, only: [:show, :edit, :update, :destroy, :create, :new]
-  before_filter :set_project, except: [:index, :new]
+  before_filter:authenticate_user!, only: [ :edit, :update, :destroy, :create, :new]
+  before_filter :set_project, except: [:index,:create, :new]
 
   # GET /projects
   # GET /projects.json
@@ -83,10 +83,10 @@ class ProjectsController < ApplicationController
   end
 
   def visible?
-    @project.public_project? or (user_signed_in? and @project.user == current_user)
+    @project.public_project or (user_signed_in? and @project.user == current_user)
   end
 
   def project_params
-    params[:project].permit(:project_name)
+    params[:project].permit(:project_name, :Commentary)
   end
 end

@@ -5,4 +5,13 @@
 h1  Create Project
 
 =form_for(@project) do |f|
-  p pending
+  .field
+    =f.label :project_name
+    =f.text_field :project_name
+  .field
+    =f.label :Commentary
+    =f.text_field :Commentary
+
+  .actions
+    =f.submit "Create!"
+
