@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312093113) do
+ActiveRecord::Schema.define(version: 20150410074323) do
 
   create_table "auths", force: :cascade do |t|
     t.string   "uid"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150312093113) do
     t.integer  "status"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "Commentary"
   end
 
   add_index "projects", ["project_name", "user_id"], name: "index_projects_on_project_name_and_user_id", unique: true

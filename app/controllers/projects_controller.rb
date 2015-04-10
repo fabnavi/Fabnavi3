@@ -22,7 +22,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    render :template  => "projects/show"
   end
 
   # POST /projects
@@ -83,7 +82,7 @@ class ProjectsController < ApplicationController
   end
 
   def visible?
-    @project.public_project or (user_signed_in? and @project.user == current_user)
+    @project.public_project? or (user_signed_in? and @project.user == current_user)
   end
 
   def project_params
