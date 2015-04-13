@@ -28,7 +28,6 @@ var Fabnavi = function(){
     queueingImageList = localImageList;
     ViewConfig.init();
     CalibrateController.init();
-    UIPanel.init();
 
     /*  Initialize each Mode   */
     switch(mode){
@@ -54,7 +53,6 @@ var Fabnavi = function(){
         break;
       case 2:
         showingImageList.initEditor();
-        UIPanel.setEditMode();
 
         PhaseController.editMode();
         break;
@@ -73,7 +71,6 @@ var Fabnavi = function(){
   function setCalibrateMode(){
     setCalibrationLock(false); 
     setGlobalImageVisible();
-    UIPanel.setCalibrateMode();
     CalibrateController.addMouseEvent();
   }
 
@@ -82,14 +79,12 @@ var Fabnavi = function(){
 
       setLocalImageVisible();
     MainView.showCalibrateLine();
-    UIPanel.setCalibrateMode();
   }
 
   function setAddMode(){
     setCalibrationLock(true);
 
     setGlobalImageVisible();
-    UIPanel.setNormalMode();
     CalibrateController.removeMouseEvent();
   }
 
@@ -97,7 +92,6 @@ var Fabnavi = function(){
     setCalibrationLock(true); 
 
     setGlobalImageVisible();
-    UIPanel.setNormalMode();
     CalibrateController.removeMouseEvent();
   }
 
@@ -154,7 +148,7 @@ var Fabnavi = function(){
   }
 
   function showPage(){
-    UIPanel.setCounterText(showingImageList.index() + 1 + "/" + showingImageList.maxLength()); 
+    console.log(showingImageList.index() + 1 + "/" + showingImageList.maxLength()); 
     var deferredImage;
     if(deferredImage = showingImageList.getDeferredImage()){
       MainView.clear();
@@ -168,7 +162,6 @@ var Fabnavi = function(){
   }
 
   function afterShowing(){
-   console.log(_showCalibrationLine);
     if(_showCalibrationLine){
       MainView.showCalibrateLine();
     }
@@ -179,12 +172,10 @@ var Fabnavi = function(){
     viewStatus = 1;
     MainView.redraw();
     viewStatus = 2;
-    console.log(_showCalibrationLine);
     if(_showCalibrationLine)MainView.showCalibrateLine();
   }
 
   function toggleConsole(){
-    UIPanel.toggle();
   }
 
   function toggleEditor() {
@@ -203,7 +194,6 @@ var Fabnavi = function(){
   function shoot(){
     Camera.ping().done(function(){
       MainView.clear();
-      UIPanel.hide();
       showingImageList.hideEditor();
       Camera.shoot().then(function(url){
         redraw();
