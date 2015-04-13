@@ -85,10 +85,11 @@ function toggleAspectShiftMode(){
 }
 
 function addMouseEvent (){
-  if(Fabnavi.calibrateLock()){
+  if(Fabnavi.isCalibrationLocked()){
     removeMouseEvent();
     return -1;
   }
+
   cvs.onwheel = function(e){
     e.preventDefault();
     var y = e.deltaY;

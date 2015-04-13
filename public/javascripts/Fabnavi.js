@@ -3,9 +3,8 @@ var Fabnavi = function(){
   var viewStatusList = ["Initializing","loadingImage","showing"],
       viewStatus= 0,
       modeList = ["play","add","edit"],
-      recordingModeList = ["Play","Calibrate","Crop","Add"],
-      recordingMode = 0,
-      calibrateLock = true,
+      _calibrationLock = true,
+      _showCalibrationLine = false,
       globalImageList,
       localImageList,
       showingImageList,
@@ -50,11 +49,13 @@ var Fabnavi = function(){
         } else {
           setAddMode();
         }
+
         PhaseController.addMode();
         break;
       case 2:
         showingImageList.initEditor();
         UIPanel.setEditMode();
+
         PhaseController.editMode();
         break;
       default:
@@ -70,44 +71,42 @@ var Fabnavi = function(){
   }
 
   function setCalibrateMode(){
-    recordingMode = 1;
-    calibrateLock = false; 
+    setCalibrationLock(false); 
     setGlobalImageVisible();
     UIPanel.setCalibrateMode();
     CalibrateController.addMouseEvent();
-    Publisher.update("Mode","Calibrate");
   }
 
   function setCropMode(){
-    recordingMode = 2;
-    calibrateLock = false; 
+    setCalibrationLock(false)
+
     setLocalImageVisible();
     MainView.showCalibrateLine();
     UIPanel.setCalibrateMode();
-    Publisher.update("Mode","Crop");
-    CalibrateController.addMouseEvent();
   }
 
   function setAddMode(){
-    recordingMode = 3;
-    calibrateLock = true; 
+    setCalibrationLock(true);
+
     setGlobalImageVisible();
     UIPanel.setNormalMode();
     CalibrateController.removeMouseEvent();
-    Publisher.update("Mode","Add");
   }
 
   function setPlayMode(){
-    recordingMode = 0;
-    calibrateLock = true; 
+    setCalibrationLock(true); 
+
     setGlobalImageVisible();
     UIPanel.setNormalMode();
     CalibrateController.removeMouseEvent();
-    Publisher.update("Mode","Play");
+  }
+
+  function setCalibrationLine(show){
+    _showCalibrationLine = show;    
   }
 
   function getCalibrateLock(){
-    return calibrateLock;
+    return _setCalibrationLock;
   }
 
   /* Common fabnavi methods*/
@@ -146,12 +145,14 @@ var Fabnavi = function(){
     }
   }
 
+  function setCalibrationLock(isLock){
+    _setCalibrationLock = isLock;
+  }
   function reloadPage(){
     setPage(showingImageList.index());
   }
 
   function showPage(){
-    console.trace();
     UIPanel.setCounterText(showingImageList.index() + 1 + "/" + showingImageList.maxLength()); 
     var deferredImage;
     if(deferredImage = showingImageList.getDeferredImage()){
@@ -166,20 +167,17 @@ var Fabnavi = function(){
   }
 
   function afterShowing(){
-    if(recordingMode == 2) {
+    if(_showCalibrationLine){
       MainView.showCalibrateLine();
     }
   }
 
-  function getRecordingMode(){
-    return recordingMode;
-  }
 
   function redraw(){
     viewStatus = 1;
     MainView.redraw();
     viewStatus = 2;
-    if(recordingMode == 2)MainView.showCalibrateLine();
+    if(_showCalibrationLine)MainView.showCalibrateLine();
   }
 
   function toggleConsole(){
@@ -200,7 +198,6 @@ var Fabnavi = function(){
   }
 
   function shoot(){
-    if(recordingMode == 0)throw new Error("PlayMode cannot take picture");
     Camera.ping().done(function(){
       MainView.clear();
       UIPanel.hide();
@@ -280,7 +277,8 @@ var Fabnavi = function(){
     removePage:removePage,
     reloadPage:reloadPage,
     exit:exitProject,
-    calibrateLock:getCalibrateLock,
+    isCalibrationLocked:getCalibrateLock,
+    setCalibrationLock:setCalibrationLock,
 
     setCalibrateMode:setCalibrateMode,
     setPlayMode:setPlayMode,
