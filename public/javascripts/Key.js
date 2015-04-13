@@ -1,11 +1,22 @@
 var KeyBind = function () {
 
-  var keyMap = []
+  var keyMap = [],
+      trigger = [],
+      triggeredPromise = null
   ;
 
 function setKeyMap(){
   window.onkeydown = function(e) {
-    var key = e.keyCode;
+    var key = e.keyCode,
+        i = 0
+         ;
+
+    for(i = 0; i < trigger.length; ++i){
+      if(trigger[i] == key){
+        triggeredPromise();
+      }
+    }
+
     if(keyMap.hasOwnProperty(key)){
       keyMap[key]();
     } else {
@@ -27,7 +38,7 @@ function addMode(){
   keyMap[69] = Director.toggleEditor;
   keyMap[88] = Director.removePage;
   keyMap[84] = Director.setThumbnail;
-  keyMap[83] = Server.postPlaylist;
+  //keyMap[83] = Server.postPlaylist;
   setKeyMap();
 }
 
@@ -37,7 +48,7 @@ function editMode(){
   keyMap[69] = Director.toggleEditor;
   keyMap[88] = Director.removePage;
   keyMap[84] = Director.setThumbnail;
-  keyMap[83] = Server.postPlaylist;
+  //keyMap[83] = Server.postPlaylist;
   setKeyMap();
 }
 
@@ -59,7 +70,19 @@ function showKeyMap(){
   return keyMap;
 }
 
+function register(promise, keys){
+  trigger = keys;
+  triggeredPromise = promise;
+}
+
+function deregister(){
+  trigger = [];
+  triggeredPromise = null;
+}
+
 return {
+  register:register,
+  deregister:deregister,
   play:playMode,
   add:addMode,
   edit:editMode,

@@ -34,12 +34,15 @@ function init (_mode){
   switch(mode){
     case 0:
     initAsPlayMode();
+    PhaseCOntroller.playMode();
     break;
     case 1:
     initAsAddMode();
+    PhaseController.addMode();
     break;
     case 2:
     initAsEditMode();
+    PhaseController.editMode();
     break;
     default:
     break
@@ -47,6 +50,7 @@ function init (_mode){
 
   /*  After   */
   KeyBind[modeList[mode]]();
+
 
   /* Finish Initializing */
   viewStatus = 1;
