@@ -13,7 +13,7 @@ var Server = function (){
   }
 
   function postPlaylist (){
-    var lst = Director.list();
+    var lst = Fabnavi.list();
     console.log(lst.saveLock);
     if(lst.saveLock() == false){
      Publisher.unsubscribe("Playlist");

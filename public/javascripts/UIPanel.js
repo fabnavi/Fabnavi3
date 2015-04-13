@@ -82,15 +82,15 @@ function init(){
   };
 
   document.getElementById('setThumbnail').onclick = function(){
-    Director.setThumbnail();
+    Fabnavi.setThumbnail();
   };
 
-  document.getElementById('edit_tab').onclick = Director.setPlayMode;
-  document.getElementById('property_tab').onclick = Director.setPlayMode;
-  document.getElementById('calibrate_tab').onclick = Director.setCalibrateMode;
-  if(Director.mode() == 1){
+  document.getElementById('edit_tab').onclick = Fabnavi.setPlayMode;
+  document.getElementById('property_tab').onclick = Fabnavi.setPlayMode;
+  document.getElementById('calibrate_tab').onclick = Fabnavi.setCalibrateMode;
+  if(Fabnavi.mode() == 1){
     var crop_tab = new HideableDOM('crop_tab');
-    crop_tab.onclick(Director.setCropMode);
+    crop_tab.onclick(Fabnavi.setCropMode);
     crop_tab.show();
   }
 

@@ -44,16 +44,22 @@ var PhaseController = (function(){
 
   function success(){
     console.log("SUCCESS");
+    deregister();
   }
 
   function fail(err){
     console.log(err.toSource());
+    deregister();
     throw new Error(err);
   }
 
   function registerCallback(fn,keys){
     KeyBind.deregister();
     KeyBind.register(fn,keys); 
+  }
+
+  function deregister(){
+    KeyBind.deregister();
   }
 
   return {

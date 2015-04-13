@@ -11,7 +11,7 @@ function init(){
 
 function setLocalData(key,jsonData) {
   var data = {};
-  if(Director.mode() == 0){
+  if(Fabnavi.mode() == 0){
     data["play"] = jsonData;
     var res = getLocalData(key);
     if(res && res.hasOwnProperty("add"))data["add"] = res.add;
@@ -34,7 +34,7 @@ function getLocalConfig() {
   var res = getLocalData(id);
   res = res || "";
 
-  if(Director.mode() == 0){
+  if(Fabnavi.mode() == 0){
     _conf = res.play || "";
   } else {
     _conf = res.add || "";

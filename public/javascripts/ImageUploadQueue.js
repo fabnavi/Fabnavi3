@@ -121,9 +121,9 @@ function updateURLList(isThumbnail){
     notice("Image Posted!!!");
     var res = resultUrl.replace("\"","","g");
     if(isThumbnail){
-      Director.list().addThumbnailURLFromLocalURL(res,url);
+      Fabnavi.list().addThumbnailURLFromLocalURL(res,url);
     } else {
-      Director.list().addGlobalURLFromLocalURL(res,url);
+      Fabnavi.list().addGlobalURLFromLocalURL(res,url);
     }
     //  RecordController.updateList();
     notice("Posting Playlist Files...");

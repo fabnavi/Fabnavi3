@@ -85,7 +85,7 @@ function toggleAspectShiftMode(){
 }
 
 function addMouseEvent (){
-  if(Director.calibrateLock()){
+  if(Fabnavi.calibrateLock()){
     removeMouseEvent();
     return -1;
   }
@@ -143,7 +143,7 @@ function update (){
   else { 
    initConf();
   }
-  Director.redraw();
+  Fabnavi.redraw();
 }
 
 function initConf(){

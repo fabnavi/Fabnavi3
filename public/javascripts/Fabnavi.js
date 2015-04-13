@@ -1,4 +1,4 @@
-var Director = function(){
+var Fabnavi = function(){
 
   var viewStatusList = ["Initializing","loadingImage","showing"],
       viewStatus= 0,
@@ -50,7 +50,6 @@ function init (_mode){
 
   /*  After   */
   KeyBind[modeList[mode]]();
-
 
   /* Finish Initializing */
   viewStatus = 1;
@@ -260,6 +259,18 @@ function exitProject(){
   }
 }
 
+  function play(){
+    Fabnavi.init("play");
+  }
+
+  function add(){
+    Fabnavi.init("add");
+  }
+
+  function edit(){
+    Fabnavi.init("edit");
+  }
+
 return {
   init:init,
   mode:getModeInt,
@@ -283,11 +294,14 @@ return {
   reloadPage:reloadPage,
   exit:exitProject,
   calibrateLock:getCalibrateLock,
-  recordingMode:getRecordingMode,
 
   setCalibrateMode:setCalibrateMode,
   setPlayMode:setPlayMode,
   setCropMode:setCropMode,
   setAddMode:setAddMode,
+
+    play:play,
+    add:add,
+    edit:edit,
 };
 }();

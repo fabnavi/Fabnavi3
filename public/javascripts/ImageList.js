@@ -233,7 +233,7 @@ function remove(i){
     editor.setPage(index);
   }
   length = list.length;
-  Director.reloadPage();
+  Fabnavi.reloadPage();
 }
 
 function getIndex(){

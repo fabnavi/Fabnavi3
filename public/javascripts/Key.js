@@ -34,10 +34,10 @@ function playMode(){
 function addMode(){
   clearKeyMap();
   commonKeyMap();
-  keyMap[13] = Director.shoot;
-  keyMap[69] = Director.toggleEditor;
-  keyMap[88] = Director.removePage;
-  keyMap[84] = Director.setThumbnail;
+  keyMap[13] = Fabnavi.shoot;
+  keyMap[69] = Fabnavi.toggleEditor;
+  keyMap[88] = Fabnavi.removePage;
+  keyMap[84] = Fabnavi.setThumbnail;
   //keyMap[83] = Server.postPlaylist;
   setKeyMap();
 }
@@ -45,21 +45,21 @@ function addMode(){
 function editMode(){
   clearKeyMap();
   commonKeyMap();
-  keyMap[69] = Director.toggleEditor;
-  keyMap[88] = Director.removePage;
-  keyMap[84] = Director.setThumbnail;
+  keyMap[69] = Fabnavi.toggleEditor;
+  keyMap[88] = Fabnavi.removePage;
+  keyMap[84] = Fabnavi.setThumbnail;
   //keyMap[83] = Server.postPlaylist;
   setKeyMap();
 }
 
 function commonKeyMap() {
-  keyMap[39] = Director.nextPage;
-  keyMap[97] = Director.nextPage;
-  keyMap[37] = Director.prevPage;
-  keyMap[99] = Director.prevPage;
-  keyMap[68] = Director.toggleConsole;
+  keyMap[39] = Fabnavi.nextPage;
+  keyMap[97] = Fabnavi.nextPage;
+  keyMap[37] = Fabnavi.prevPage;
+  keyMap[99] = Fabnavi.prevPage;
+  keyMap[68] = Fabnavi.toggleConsole;
   keyMap[67] = ViewConfig.save;
-  keyMap[27] = Director.exit;
+  keyMap[27] = Fabnavi.exit;
 }
 
 function clearKeyMap(){

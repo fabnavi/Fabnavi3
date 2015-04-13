@@ -55,7 +55,7 @@ function updateImageList(){
   for(var i in ul.childNodes){
     res.push(ul.childNodes[i].idURL);
   }
-  Director.updateShowingImageList(res);
+  Fabnavi.updateShowingImageList(res);
 }
 
 function generateNode(index){
@@ -73,7 +73,7 @@ function generateNode(index){
     clicked = true;
     var parent = e.originalTarget.parentElement;
     var index = getIndex(e.originalTarget,parent.parentElement);
-    Director.setPage(index);
+    Fabnavi.setPage(index);
     select(index);
   }
   return node;
