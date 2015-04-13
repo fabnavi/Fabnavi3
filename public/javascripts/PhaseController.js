@@ -1,7 +1,7 @@
 var PhaseController = (function(){
 
   function addMode(){
-    putCalibrationSheet()
+    putCalibrationSheetWithShoot()
   .then(movePicture)
   .then(adjustSize)
   .then(success,fail);
@@ -13,14 +13,30 @@ var PhaseController = (function(){
 
   function playMode(){
 
+    putCalibrationSheet()
+  .then(movePicture)
+  .then(adjustSize)
+  .then(success,fail);
   }
 
-  var putCalibrationSheet = function(){
+  var putCalibrationSheetWithShoot = function(){
+
+
     var d = new $.Deferred();
     registerCallback(function(){
       console.log("Put picture");
       d.resolve();
     },[13]); 
+    return d.promise();
+  }
+
+  var putCalibrationSheet = function(){
+    Fabnavi.setCalibrationLine(true);
+    var d = new $.Deferred();
+    registerCallback(function(){
+      console.log("Put picture");
+      d.resolve();
+    },[32]); 
     return d.promise();
   }
 

@@ -34,7 +34,7 @@ var Fabnavi = function(){
     switch(mode){
       case 0:
         setGlobalImageVisible();
-        setCalibrateMode();
+//        setCalibrateMode();
         PhaseController.playMode();
         break;
       case 1:
@@ -63,7 +63,7 @@ var Fabnavi = function(){
     }
 
     /*  After   */
-    KeyBind[modeList[mode]]();
+//    KeyBind[modeList[mode]]();
 
     /* Finish Initializing */
     viewStatus = 1;
@@ -80,7 +80,7 @@ var Fabnavi = function(){
   function setCropMode(){
     setCalibrationLock(false)
 
-    setLocalImageVisible();
+      setLocalImageVisible();
     MainView.showCalibrateLine();
     UIPanel.setCalibrateMode();
   }
@@ -103,6 +103,7 @@ var Fabnavi = function(){
 
   function setCalibrationLine(show){
     _showCalibrationLine = show;    
+    redraw();
   }
 
   function getCalibrateLock(){
@@ -167,6 +168,7 @@ var Fabnavi = function(){
   }
 
   function afterShowing(){
+   console.log(_showCalibrationLine);
     if(_showCalibrationLine){
       MainView.showCalibrateLine();
     }
@@ -177,6 +179,7 @@ var Fabnavi = function(){
     viewStatus = 1;
     MainView.redraw();
     viewStatus = 2;
+    console.log(_showCalibrationLine);
     if(_showCalibrationLine)MainView.showCalibrateLine();
   }
 
@@ -279,6 +282,7 @@ var Fabnavi = function(){
     exit:exitProject,
     isCalibrationLocked:getCalibrateLock,
     setCalibrationLock:setCalibrationLock,
+    setCalibrationLine:setCalibrationLine,
 
     setCalibrateMode:setCalibrateMode,
     setPlayMode:setPlayMode,
