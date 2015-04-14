@@ -15,16 +15,38 @@ var PhaseController = (function(){
     putCalibrationSheet()
   .then(movePicture)
   .then(adjustSize)
+  .then(playSlide)
   .then(success,fail);
   }
 
-  var putCalibrationSheetWithShoot = function(){
+  
+
+  var playSlide = function(){
+
+    var d = new $.deferred();
+    registercallback(function(){
+      d.resolve();
+    },[]); 
+    return d.promise();
+  }
+
+
+  function beforeStageChanging(){
+    Fabnavi.setCalibrationLine(false); 
+    Fabnavi.setCalibrationLock(false); 
+    Fabnavi.setNavigationImage("");
+    CalibrateController.removeMouseEvent();
+    Key.clear();
+  }
+
+  var putcalibrationsheetwithshoot = function(){
     Fabnavi.setCalibrationLine(true);
     Fabnavi.setNavigationImage("move_sheet.gif");
 
-    var d = new $.Deferred();
-    registerCallback(function(){
-      console.log("Put picture");
+    var d = new $.deferred();
+    registercallback(function(){
+      console.log("put picture");
+      beforeStageChanging();
       d.resolve();
     },[13]); 
     return d.promise();
@@ -38,6 +60,7 @@ var PhaseController = (function(){
     var d = new $.Deferred();
     registerCallback(function(){
       console.log("Put picture");
+      beforeStageChanging();
       d.resolve();
     },[32]); 
     return d.promise();
@@ -45,15 +68,21 @@ var PhaseController = (function(){
 
   var movePicture = function(){
     Fabnavi.setNavigationImage("drag_image.gif");
+    Fabnavi.setCalibrationLock(false);
+    CalibrateController.addMouseEvent();
+
     var d = new $.Deferred();
     registerCallback(function(){
       console.log("move Picture");
+      beforeStageChanging();
+      ViewConfig.save();
       d.resolve();
     },[32]); 
     return d.promise();
   }
 
   var adjustSize = function(){
+    CalibrateController.removeMouseEvent();
     Fabnavi.setNavigationImage("adjust_asp.gif");
 
     var keymap = [],d = 20;
@@ -66,8 +95,9 @@ var PhaseController = (function(){
     var d = new $.Deferred();
     registerCallback(function(){
       console.log("adjustSize");
+      beforeStageChanging();
       d.resolve();
-    }, [83]);
+    }, [32]);
     return d.promise();
   }
 

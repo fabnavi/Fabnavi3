@@ -98,6 +98,7 @@ return {
   play:playMode,
   add:addMode,
   edit:editMode,
+  clear:clearKeyMap,
   keyMap:showKeyMap,
   mode:"Project"
 };

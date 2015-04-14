@@ -103,12 +103,14 @@ function addMouseEvent (){
     return -1;
   }
 
+  /*
   cvs.onwheel = function(e){
     e.preventDefault();
     var y = e.deltaY;
     if(y>0)zoomOut(y);
     else zoomIn(-y);
   };
+  */
   cvs.onmousedown = function (e) {
     drag = true;
     lx = e.clientX;
