@@ -10,7 +10,8 @@ var Fabnavi = function(){
       showingImageList,
       queueingImageList,
       mode = null,
-      counter
+      counter,
+      navigator
         ;
 
   function init (_mode){
@@ -29,11 +30,12 @@ var Fabnavi = function(){
     ViewConfig.init();
     CalibrateController.init();
 
+    navigator = document.getElementById('navigation-image');
+
     /*  Initialize each Mode   */
     switch(mode){
       case 0:
         setGlobalImageVisible();
-//        setCalibrateMode();
         PhaseController.playMode();
         break;
       case 1:
@@ -61,11 +63,16 @@ var Fabnavi = function(){
     }
 
     /*  After   */
-//    KeyBind[modeList[mode]]();
+    //    KeyBind[modeList[mode]]();
 
     /* Finish Initializing */
     viewStatus = 1;
     showPage();
+  }
+
+  function setNavigationImage(url){
+    navigator.src = "/images/" + url;
+    console.log(navigator);
   }
 
   function setCalibrateMode(){
@@ -75,9 +82,9 @@ var Fabnavi = function(){
   }
 
   function setCropMode(){
-    setCalibrationLock(false)
+    setCalibrationLock(false);
 
-      setLocalImageVisible();
+    setLocalImageVisible();
     MainView.showCalibrateLine();
   }
 
@@ -167,15 +174,11 @@ var Fabnavi = function(){
     }
   }
 
-
   function redraw(){
     viewStatus = 1;
     MainView.redraw();
     viewStatus = 2;
     if(_showCalibrationLine)MainView.showCalibrateLine();
-  }
-
-  function toggleConsole(){
   }
 
   function toggleEditor() {
@@ -204,10 +207,6 @@ var Fabnavi = function(){
     }).fail(function(){
       alert("Please Connect to Camera");
     });
-  }
-
-  function shootAndGetURLWithDeferred(){
-
   }
 
   function getShowingImageList(){
@@ -259,7 +258,6 @@ var Fabnavi = function(){
     prevPage:prevPage,
     setPage:setPage,
     redraw:redraw,
-    toggleConsole:toggleConsole,
     shoot:shoot,
 
     toggleEditor:toggleEditor,
@@ -285,5 +283,7 @@ var Fabnavi = function(){
 
     setGlobalImageVisible:setGlobalImageVisible,
     setLocalImageVisible:setLocalImageVisible,
+
+    setNavigationImage:setNavigationImage,
   };
 }();

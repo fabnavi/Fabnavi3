@@ -50,6 +50,19 @@ function changeAspectRatio (_shift){
   updateXYFromWH();
 }
 
+
+function changeRegionCB(_w,_h){
+ return function(){
+  w += _w;
+  h += _h;
+  validateWH();
+  update();
+  updateXYFromWH();
+ }
+}
+
+
+
 function validateWH(){
   if(w < 2)w = 2;
   if(h < 2)h = 2;
@@ -161,5 +174,6 @@ return {
   addMouseEvent:addMouseEvent,
   removeMouseEvent:removeMouseEvent,
   toggleAspBtn:toggleAspectShiftMode,
+  changeRegionCB:changeRegionCB,
 };
 } ();

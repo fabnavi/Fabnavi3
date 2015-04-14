@@ -1,4 +1,4 @@
-var KeyBind = function () {
+var Key = function () {
 
   var keyMap = [],
       trigger = [],
@@ -30,6 +30,7 @@ function playMode(){
   commonKeyMap();
   setKeyMap();
 }
+
 
 function addMode(){
   clearKeyMap();
@@ -80,7 +81,18 @@ function deregister(){
   triggeredPromise = null;
 }
 
+
+function setKeyMapWithArray(map){
+ clearKeyMap();
+  keyMap = map;
+  setKeyMap();
+}
+setKeyMap();
+
+
 return {
+ setKeyMap:setKeyMapWithArray, 
+
   register:register,
   deregister:deregister,
   play:playMode,
