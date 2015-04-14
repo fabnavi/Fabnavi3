@@ -1,0 +1,35 @@
+$offset-top-header: 100px;
+$offset-left-contents:40px;
+$base-gray-color:#B0B0B0;
+$base-selected-color:#DDDD00;
+$thumbnail_width:280px;
+$thumbnail_height:210px;
+$menu_height:30px;
+$menu_width:160px;
+$title-color:#DDDD00;
+
+@mixin title-font{
+  font: {
+    style: normal;
+    family: 'Open Sans Light',  sans-serif;  
+    weight: normal;
+    size:23pt;
+  }
+  float:left;
+}
+
+@mixin head-font {
+  font: {
+    style: normal;
+    family: 'Open Sans Light',  sans-serif;  
+    weight: normal;
+    size:17pt;
+  }
+
+}
+
+@mixin basic_body{
+  padding: 0;
+  margin: 0;
+  background-color:$base-gray-color;
+}

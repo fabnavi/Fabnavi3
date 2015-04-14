@@ -1,0 +1,78 @@
+$thumbnail_width:280px;
+$thumbnail_height:210px;
+$menu_height:30px;
+$menu_width:160px;
+li img {
+  width :$thumbnail_width;
+  height:$thumbnail_height;
+  transform:rotateZ(180deg);
+}
+
+@mixin project_thumbnail{
+  top:90px;
+  left:-40px;
+  position:relative;
+  margin: {
+    left: 40px;
+    right:40px;
+  }
+  li {
+    border : 3px white solid;
+    width :280px;
+    height:210px;
+    background-color:white;
+    float:left;
+    list-style-type:none;
+    margin:{
+      right:30px;
+      bottom:70px;
+    }
+
+    input {
+      display:none;
+    }
+
+    .project-name{
+      margin-top:-3px;
+      font-size:18pt;
+      color:white;
+    }
+    .project-author {
+      margin-top:0px;
+      font-size:11pt;
+      color:white;
+      }
+    }
+    .selectedItem{
+      border : 3px $base-selected-color solid;
+      input[type="button"] {
+        border:0px;
+        display:inline;
+        position:absolute;
+        background-color:$base-gray-color;
+        color:white;
+        font:{
+          style:bold;
+          size:11pt;
+        }
+        margin:{
+          left:-$thumbnail_width+60px;
+        }
+        width:$menu_width;
+        height:$menu_height;
+      }
+      input.selectedOp{
+        background-color:$base-selected-color;
+      }
+    $n:4;
+    @while $n > 0{
+      input:nth-of-type(#{$n}){
+        margin-top:$n*($menu_height+10px)-5px;
+        }
+      $n: $n - 1;
+   }
+   #onlyPlayBtn {
+    margin-top:$thumbnail_height/2-16px;
+   }
+  }
+}

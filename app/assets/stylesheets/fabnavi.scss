@@ -1,0 +1,71 @@
+@import "common";
+@import "statusbar";
+@import "project_thumbnail";
+
+@font-face {
+   font-family: "Open Sans Light";
+   font-style: normal;
+   font-weight: normal;
+   src: url("/fonts/OpenSans-Light-webfont.woff");
+}
+
+
+button {
+  opacity:0.4;
+}
+
+body {
+  @include basic_body;
+}
+
+#signin {
+  @include head-font;
+  height:40px;
+  width:225px;
+
+  margin:{
+    top:100px;
+    right:50px;
+  }
+  float:right;
+}
+
+.hide {
+  display:none;
+}
+
+
+#header {
+  @include statusbar;
+}
+
+#project-list {
+  @include project_thumbnail;
+}
+
+#title-logo {
+  margin:{
+   left:40px;
+   top:80px;
+  }
+}
+
+#panel {
+ left:50px;
+}
+
+.data {
+  user-select:none;
+}
+tbody {
+  user-select:none;
+}
+tr {
+  user-select:none;
+}
+td {
+  user-select:none;
+}
+
+
+

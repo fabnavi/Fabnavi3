@@ -1,0 +1,29 @@
+
+@mixin editor {
+  div#editor {
+    z-index : 2;
+    top : 0px;
+    position : fixed;
+    ul {
+     width:10000000px;
+      background-color:rgba(0,0,0,0.6);
+      position:absolute;
+      li {
+        float:left;
+        border: white 1px solid;
+        list-style:none;
+        margin: {
+          left:30px;
+          top:20px;
+          bottom:20px;
+        }
+        img {
+          transform:rotateZ(180deg);
+        }
+      }
+   }
+    .selected {
+      border: yellow 1px solid;
+    }
+  }
+}

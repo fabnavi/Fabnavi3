@@ -1,0 +1,50 @@
+@mixin statusbar{
+  position:absolute;
+  left:990px;
+  background-color:#F0F0F0;
+  top:$offset-top-header - 20px;
+  height:80px;
+  min-width:280px;
+
+  @include title-font;
+  img {
+    position:absolute;
+    top:7px;
+    left:7px;
+    height:65px;
+    width:65px;
+  }
+
+
+  #author_name {
+    $vertical:30px;
+    text-align:center;
+    padding:{
+     top:$vertical;
+     left:75px;
+     right:5px;
+    }
+  }
+
+  #author_email {
+    display:none;
+  }
+
+
+  #signout {
+    height:50px;
+    width:100%;
+    position:relative;
+    transition:0.3s ease-in-out;
+    z-index:-1;
+    top:-30px;
+    @include head-font;
+  }
+
+  #signout.show {
+    top:15px;
+    display:block;
+  }
+
+}
+

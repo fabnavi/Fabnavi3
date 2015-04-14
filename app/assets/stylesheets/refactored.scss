@@ -1,0 +1,59 @@
+@import "common";
+@import "editor";
+
+@font-face {
+   font-family: "Open Sans Light";
+   font-style: normal;
+   font-weight: normal;
+   src: url("/fonts/OpenSans-Light-webfont.woff");
+}
+
+@include editor;
+#cvs {
+  width: 100%;
+  height: 100%;
+  z-index:1;
+  transform : rotatez(180deg);
+}
+button {
+  opacity:0.4;
+}
+
+body {
+  @include basic_body;
+}
+
+#navigation-image{
+  width:30%;
+  position:fixed;
+  right:0;
+  top:0;
+  z-index:999;
+  background-color:white;
+}
+
+.hide {
+  display:none;
+}
+
+#counter {
+  position:fixed;
+  left:90%;
+  top:80%;
+  z-index:2;
+  color:red;
+  font-size:30px;
+}
+
+.data {
+  user-select:none;
+}
+tbody {
+  user-select:none;
+}
+tr {
+  user-select:none;
+}
+td {
+  user-select:none;
+}
