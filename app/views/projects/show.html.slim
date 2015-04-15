@@ -11,7 +11,7 @@ h1 show
       Fabnavi.play();
     }
 -content_for( :css_link ) do
-  =stylesheet_link_tag    'content', media: 'all', 'data-turbolinks-track' => true 
+  =stylesheet_link_tag 'content', media: 'all', 'data-turbolinks-track' => true 
 =render partial: "layouts/content", locals: { project: @project.to_json, pictures: @project.try(:picture)}
 '|
 = link_to 'Index', root_path 

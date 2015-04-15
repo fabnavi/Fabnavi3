@@ -1,0 +1,49 @@
+@import "common";
+@import "statusbar";
+@import "project_thumbnail";
+
+@font-face {
+   font-family: "Open Sans Light";
+   font-style: normal;
+   font-weight: normal;
+   src: url("/fonts/OpenSans-Light-webfont.woff");
+}
+
+body {
+ @include basic_body;
+}
+
+header {
+  border:solid 1px blue;
+  height:100px;
+  position:relative;
+}
+
+#title-logo,
+.home ,
+.sign-out,
+.sign-in
+{
+
+ padding-left:30px;
+ @include head-font;
+ font-size:29pt;
+  margin:0 30px;
+ float:left;
+ cursor:pointer;
+}
+
+.op-nav {
+  text-align : center;
+  border-bottom: solid black 5px;
+ @include head-font;
+ font-size:29pt;
+}
+
+#projectList {
+  border:solid black 5px;
+  border-radius:20px;
+  margin:30px;
+}
+
+
