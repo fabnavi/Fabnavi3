@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Fabnavi
+    link[rel="icon" href="favicon.ico" type="image/x-icon"]
+    =javascript_include_tag 'application', 'data-turbolinks-track' => true 
+    == yield :js_include
+    == yield :css_link
+    == yield :js_info
+    =csrf_meta_tags
+    meta content="width=device-width user-scalable=no" name="viewport"
+  body[onload="boot();"]
+    header 
+    section.projects
+      =yield

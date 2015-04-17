@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     redirect_to root_path, :status => :forbidden  unless visible?
+    render :layout => 'content'
   end
 
   # GET /projects/new
@@ -22,6 +23,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    render :layout => 'content'
   end
 
   # POST /projects

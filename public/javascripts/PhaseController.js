@@ -23,8 +23,8 @@ var PhaseController = (function(){
 
   var playSlide = function(){
 
-    var d = new $.deferred();
-    registercallback(function(){
+    var d = new $.Deferred();
+    registerCallback(function(){
       d.resolve();
     },[]); 
     return d.promise();
@@ -43,8 +43,8 @@ var PhaseController = (function(){
     Fabnavi.setCalibrationLine(true);
     Fabnavi.setNavigationImage("move_sheet.gif");
 
-    var d = new $.deferred();
-    registercallback(function(){
+    var d = new $.Deferred();
+    registerCallback(function(){
       console.log("put picture");
       beforeStageChanging();
       d.resolve();
@@ -76,7 +76,6 @@ var PhaseController = (function(){
     registerCallback(function(){
       console.log("move Picture");
       beforeStageChanging();
-      ViewConfig.save();
       d.resolve();
     },[32]); 
     return d.promise();
@@ -97,6 +96,7 @@ var PhaseController = (function(){
     registerCallback(function(){
       console.log("adjustSize");
       beforeStageChanging();
+      ViewConfig.save();
       d.resolve();
     }, [32]);
     return d.promise();
