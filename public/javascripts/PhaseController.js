@@ -69,6 +69,7 @@ var PhaseController = (function(){
   var movePicture = function(){
     Fabnavi.setNavigationImage("drag_image.gif");
     Fabnavi.setCalibrationLock(false);
+    Fabnavi.setCalibrationLine(true);
     CalibrateController.addMouseEvent();
 
     var d = new $.Deferred();
