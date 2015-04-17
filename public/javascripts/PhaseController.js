@@ -4,6 +4,7 @@ var PhaseController = (function(){
     putCalibrationSheetWithShoot()
   .then(movePicture)
   .then(adjustSize)
+ .then(record)
   .then(success,fail);
   }
 
@@ -19,9 +20,29 @@ var PhaseController = (function(){
   .then(success,fail);
   }
 
+  var record = function(){
+    /* 1. change imagelist
+     * 2. imageuploader start
+     */
+    ImageUploadQueue.fire();
+
+
+    var keymap = [];
+    keyMap[13] = Fabnavi.shoot;
+    keyMap[88] = Fabnavi.removePage;
+    Key.setKeyMap(keymap);
+
+    var d = new $.Deferred();
+    registerCallback(function(){
+      d.resolve();
+    },[]); 
+    return d.promise();
+
+  };
+
   var playSlide = function(){
 
-    var keymap = [],d = 20;
+    var keymap = [];
     keyMap[39] = Fabnavi.nextPage;
     keyMap[97] = Fabnavi.nextPage;
     keyMap[37] = Fabnavi.prevPage;
@@ -44,13 +65,13 @@ var PhaseController = (function(){
     Key.clear();
   }
 
-  var putcalibrationsheetwithshoot = function(){
+  var putCalibrationSheetWithShoot = function(){
     Fabnavi.setCalibrationLine(true);
     Fabnavi.setNavigationImage("move_sheet.gif");
 
     var d = new $.Deferred();
     registerCallback(function(){
-      console.log("put picture");
+      Fabnavi.shoot();
       beforeStageChanging();
       d.resolve();
     },[13]); 

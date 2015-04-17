@@ -3,11 +3,11 @@
     'ImageList',  'Detail',  'ViewConfig',  'ThumbnailViewer',  'Key',
     'Publisher',
     'CameraControll',  'Server',  'CalibrateController',  'ImageUploadQueue',
-    'UIPanel', 'PhaseController', 'Fabnavi',  'MainView'
+    'PhaseController', 'Fabnavi',  'MainView'
   javascript:
     function boot(){
       Fabnavi.add();
     }
 -content_for( :css_link ) do
-  =stylesheet_link_tag 'refactored','jquery-ui','jquery-uistructure','jquery-uitheme'
+  =stylesheet_link_tag 'content', media: 'all', 'data-turbolinks-track' => true 
 =render partial: "layouts/content", locals: { project: @project.to_json, pictures: @project.try(:picture)}
