@@ -19,9 +19,15 @@ var PhaseController = (function(){
   .then(success,fail);
   }
 
-  
-
   var playSlide = function(){
+
+    var keymap = [],d = 20;
+    keyMap[39] = Fabnavi.nextPage;
+    keyMap[97] = Fabnavi.nextPage;
+    keyMap[37] = Fabnavi.prevPage;
+    keyMap[99] = Fabnavi.prevPage;
+    keyMap[27] = Fabnavi.exit;
+    Key.setKeyMap(keymap);
 
     var d = new $.Deferred();
     registerCallback(function(){
@@ -29,7 +35,6 @@ var PhaseController = (function(){
     },[]); 
     return d.promise();
   }
-
 
   function beforeStageChanging(){
     Fabnavi.setCalibrationLine(false); 
