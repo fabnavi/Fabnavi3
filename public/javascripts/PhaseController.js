@@ -4,7 +4,7 @@ var PhaseController = (function(){
     putCalibrationSheetWithShoot()
   .then(movePicture)
   .then(adjustSize)
- .then(record)
+  .then(record)
   .then(success,fail);
   }
 
@@ -25,44 +25,36 @@ var PhaseController = (function(){
      * 2. imageuploader start
      */
     ImageUploadQueue.fire();
+    Fabnavi.setNavigationImage("key_bind.png");
 
 
-    var keymap = [];
+    var keyMap = [];
     keyMap[13] = Fabnavi.shoot;
     keyMap[88] = Fabnavi.removePage;
-    Key.setKeyMap(keymap);
+    Key.setKeyMap(keyMap);
 
     var d = new $.Deferred();
     registerCallback(function(){
       d.resolve();
     },[]); 
     return d.promise();
-
   };
 
   var playSlide = function(){
 
-    var keymap = [];
+    var keyMap = [];
     keyMap[39] = Fabnavi.nextPage;
     keyMap[97] = Fabnavi.nextPage;
     keyMap[37] = Fabnavi.prevPage;
     keyMap[99] = Fabnavi.prevPage;
     keyMap[27] = Fabnavi.exit;
-    Key.setKeyMap(keymap);
+    Key.setKeyMap(keyMap);
 
     var d = new $.Deferred();
     registerCallback(function(){
       d.resolve();
     },[]); 
     return d.promise();
-  }
-
-  function beforeStageChanging(){
-    Fabnavi.setCalibrationLine(false); 
-    Fabnavi.setCalibrationLock(false); 
-    Fabnavi.setNavigationImage("");
-    CalibrateController.removeMouseEvent();
-    Key.clear();
   }
 
   var putCalibrationSheetWithShoot = function(){
@@ -111,12 +103,12 @@ var PhaseController = (function(){
     CalibrateController.removeMouseEvent();
     Fabnavi.setNavigationImage("adjust_asp.gif");
 
-    var keymap = [],d = 20;
-    keymap[39] = CalibrateController.changeRegionCB(-d,0);
-    keymap[37] = CalibrateController.changeRegionCB(d,0);
-    keymap[38] = CalibrateController.changeRegionCB(0,-d);
-    keymap[40] = CalibrateController.changeRegionCB(0,d);
-    Key.setKeyMap(keymap);
+    var keyMap = [],d = 20;
+    keyMap[39] = CalibrateController.changeRegionCB(-d,0);
+    keyMap[37] = CalibrateController.changeRegionCB(d,0);
+    keyMap[38] = CalibrateController.changeRegionCB(0,-d);
+    keyMap[40] = CalibrateController.changeRegionCB(0,d);
+    Key.setKeyMap(keyMap);
 
     var d = new $.Deferred();
     registerCallback(function(){
@@ -126,6 +118,14 @@ var PhaseController = (function(){
       d.resolve();
     }, [32]);
     return d.promise();
+  }
+
+  function beforeStageChanging(){
+    Fabnavi.setCalibrationLine(false); 
+    Fabnavi.setCalibrationLock(false); 
+    Fabnavi.setNavigationImage("");
+    CalibrateController.removeMouseEvent();
+    Key.clear();
   }
 
   function success(){

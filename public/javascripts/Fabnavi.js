@@ -71,8 +71,12 @@ var Fabnavi = function(){
   }
 
   function setNavigationImage(url){
+   if(url != ""){
+    navigator.style.display = "block";
     navigator.src = "/images/" + url;
-    console.log(navigator);
+   } else {
+    navigator.style.display = "none";
+   }
   }
 
   function setCalibrateMode(){
