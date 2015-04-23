@@ -56,11 +56,11 @@ function fire () {
     $.when(
       cachedImage.loadedImg
       .then(cropAndConvertImageToDataURL(false))
-      .then(postPicture(url))
+      .then(Server.postPicture(url))
       .then(updateURLList(false)),
       cachedImage.loadedImg
       .then(cropAndConvertImageToDataURL(true))
-      .then(postPicture(generateThumbnailURL(url)))
+      .then(Server.postPicture(generateThumbnailURL(url)))
       .then(updateURLList(true)))
     .done(function(a,b){
         queue.shift();
@@ -134,37 +134,6 @@ function updateURLList(isThumbnail){
     d.resolve(url);
     return d.promise();
   }
-}
-
-/** 
- * PostPicture
- *
- *  @param data {String} dataURL format
- *  @param localImageURL {String}
- *  @return {Deferred}
- */
-function postPicture(localImageURL){
-  return function(data){
-    notice("Posting Picture....");
-    var d = $.Deferred();
-    $.post("/project/postPicture",
-      { 
-        data:data,
-        project_id:Detail.projectName(),
-        author:Detail.author(),
-        url:localImageURL
-      },function(res,err){
-        if(err != "success"){
-          console.log(err);
-          notice("Error to post picture");
-          runninng = false;
-          d.reject(err);
-        } else {
-          d.resolve(res,localImageURL);
-        }
-    });
-    return d.promise();
-  };
 }
 
 return {
