@@ -1,5 +1,6 @@
+require "JSON"
 class ProjectsController < ApplicationController
-  before_filter:authenticate_user!, only: [ :edit, :update, :destroy, :create, :new]
+  before_filter:authenticate_user!, only: [ :edit, :update, :destroy, :create, :new , :postPicture, :deletePicture]
   before_filter :set_project, except: [:index,:create, :new]
 
   # GET /projects
@@ -29,7 +30,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(new_project_params)
     @project.user = current_user
     @project.status = :private_project
 
@@ -42,6 +43,20 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def post_picture
+   puts "post picture----------------------------" 
+    Picture.new do |p|
+      p.project_id = @project.id
+    end
+
+   render :text => "http://localhost:3000/images/key_bind.png"
+  rescue
+    "failed"
+  end
+
+  def delete_picture
   end
 
   # PATCH/PUT /projects/1
@@ -69,9 +84,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
   def set_project
    if params.include? :id
-    @project = Project.find(params[:id])
+      @project = Project.find(params[:id])
    elsif params.include? :user_name and params.include? :project_name
       @project = Project.find_project(params[:user_name], params[:project_name])
    end
@@ -87,7 +103,11 @@ class ProjectsController < ApplicationController
     @project.public_project? or (user_signed_in? and @project.user == current_user)
   end
 
-  def project_params
+  def new_project_params
     params[:project].permit(:project_name, :Commentary)
+  end
+
+  def project_params
+   JSON.parse(params[:data])
   end
 end

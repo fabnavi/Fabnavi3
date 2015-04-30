@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :projects
   resource :home, :only => [:show], :controller => :home
   root to: "projects#index"
-  get "/login_test" =>  "sandbox#login"
 
+  post "/projects/post_picture" => "projects#post_picture"
+  post "/projects/update" => "projects#update"
+  delete "/projects/delete_picture" => "projects#delete_picture"
   get "/projects/:user_name/:project_name" => "projects#show"
 
   # You can have the root of your site routed with "root"

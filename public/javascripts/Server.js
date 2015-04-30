@@ -4,9 +4,9 @@ var Server = function (){
    console.log(index);
     $.post("/project/setThumbnail",
       {
-        project_id:Detail.projectName(),
-        author:Detail.author(),
-        thumbnail:index
+        id:Project.id,
+        user_id:Project.user_id,
+        thumbnail_picture_id:index
       },
       function(){},
       "jsonp");
@@ -14,14 +14,14 @@ var Server = function (){
 
   function postPlaylist (){
     var lst = Fabnavi.list();
-    console.log(lst.saveLock);
+    console.log("save lock:loadingLength",lst.saveLock());
     if(lst.saveLock() == false){
      Publisher.unsubscribe("Playlist");
-    $.post("/projects/",
+    $.post("/projects/update",
       {
-        project_id:Detail.projectName(),
-        data:JSON.stringify(lst.list()),
-        author:Detail.author()
+        id:Project.id,
+        user_id:Project.user_id,
+        data:JSON.stringify(lst.getUploadList()),
       },
       function(){},
       "json");
@@ -41,12 +41,12 @@ function postPicture(localImageURL){
   return function(data){
     notice("Posting Picture....");
     var d = $.Deferred();
-    $.post("/project/postPicture",
+    $.post("/projects/post_picture",
       { 
         data:data,
-        project_id:Detail.projectName(),
-        author:Detail.author(),
-        url:localImageURL
+        url:localImageURL,
+        id:Project.id,
+        user_id:Project.user_id,
       },function(res,err){
         if(err != "success"){
           console.log(err);

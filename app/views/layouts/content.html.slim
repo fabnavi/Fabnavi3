@@ -7,6 +7,8 @@ html
     == yield :js_include
     == yield :css_link
     == yield :js_info
+    javascript:
+      var Project = #{{@project.to_json}};
     =csrf_meta_tags
     meta content="width=device-width user-scalable=no" name="viewport"
   body[onload="boot();"]

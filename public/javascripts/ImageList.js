@@ -33,6 +33,20 @@ function getList() {
   return list;
 }
 
+function getUploadList() {
+  var arr = list.filter(isReady);
+  var res = [];
+
+  for(i in arr){
+    res[i] = {url:arr[i].globalURL,thumbnail_url:arr[i].thumbnailURL,order_in_project:i};
+  }
+  return res;
+
+  function isReady(obj){
+      return obj.hasOwnProperty("globalURL"); 
+  }
+}
+
 function pushImageURL(obj,index){
   var res = createObject(obj);
   if(Number.isInteger(index) && index < list.length){
@@ -277,6 +291,8 @@ return {
   addGlobalURLFromLocalURL:addGlobalURLFromLocalURL,
   addThumbnailURLFromLocalURL:addThumbnailURLFromLocalURL,
   saveLock : saveLock,
+
+  getUploadList: getUploadList,
 };
 
 };
